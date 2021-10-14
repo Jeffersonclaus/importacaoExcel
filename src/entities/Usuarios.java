@@ -67,4 +67,16 @@ public class Usuarios implements Serializable {
 		this.cpf = cpf;
 	}
 
+
+
+
+
+	@Override
+	public String toString() {
+		return "Usuarios [nome=" + nome + ", login=" + login + ", senha=" + senha + ", cpf=" + cpf + "]";
+	}
+	
+	
+	
+
 }

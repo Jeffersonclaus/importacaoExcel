@@ -1,6 +1,7 @@
 package application;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +11,9 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import entities.Usuarios;
 
@@ -50,9 +54,55 @@ public class ProgramJson {
 		
 		JOptionPane.showMessageDialog(null, "Arquivo Criado!!! " + "\n"+ file.getPath()); //Tela inforamndo que foi criado 
 		
+		System.out.println("*******************IMPORTANDO ARQUIVO .JSON P/ ARQUIVO .TXT *******************************");
 		
 		System.out.println(jsonUsers);
 		
+		System.out.println("*******************LENDO ARQUIVO TXT JSON ************************************************");
+		//****************LENDO ARQUIVO JASON*************
+		
+		FileReader fileReader = new FileReader("c:\\planilha\\json.txt");
+		
+		//Convertendo a leitura de um arquivoJson  p/ Array
+		// tem Cast JsonArray
+		JsonArray jsonArray = (JsonArray) JsonParser.parseReader(fileReader); 
+		
+		List<Usuarios>lisUsuarios = new ArrayList<>(); //Cria lista de usuários
+		
+		for (JsonElement jsonElement : jsonArray) { // Percorre todo o arquivo
+			
+			// Copiar as informaçoes do tipo jsonElement para Usuarios
+			Usuarios usuarioJ = new Gson().fromJson(jsonElement, Usuarios.class); 			
+			
+			lisUsuarios.add(usuarioJ); //add na lista
+			
+		}
+		
+		for (Usuarios usuarios2 : lisUsuarios) {
+			
+			System.out.println(usuarios2);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
+	
+	
+	
+	
+	
+	
 
 }
